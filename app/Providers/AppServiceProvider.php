@@ -11,7 +11,8 @@ use App\BusinessLogic\Interfaces\Admin\Settings\UserRoleTypeInterface;
 // Import application's management system settings interface classes
 use App\BusinessLogic\Interfaces\Admin\Management\ClientInterface;
 use App\BusinessLogic\Interfaces\Admin\Management\ProjectInterface;
-use App\BusinessLogic\Services\Admin\Management\ProjectService;
+use App\BusinessLogic\Interfaces\Admin\Management\ProjectTaskInterface;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
@@ -63,6 +64,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ProjectInterface::class,
             ProjectService::class,
+        );
+        $this->app->bind(
+            ProjectTaskInterface::class,
+            ProjectTaskService::class,
         );
     }
 }

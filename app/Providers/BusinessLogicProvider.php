@@ -19,6 +19,8 @@ use App\BusinessLogic\Interfaces\Admin\Management\ClientInterface;
 use App\BusinessLogic\Services\Admin\Management\ClientService;
 use App\BusinessLogic\Interfaces\Admin\Management\ProjectInterface;
 use App\BusinessLogic\Services\Admin\Management\ProjectService;
+use App\BusinessLogic\Interfaces\Admin\Management\ProjectTaskInterface;
+use App\BusinessLogic\Services\Admin\Management\ProjectTaskService;
 
 class BusinessLogicProvider extends ServiceProvider
 {
@@ -52,6 +54,10 @@ class BusinessLogicProvider extends ServiceProvider
         $this->app->bind(
             ProjectInterface::class,
             ProjectService::class,
+        );
+        $this->app->bind(
+            ProjectTaskInterface::class,
+            ProjectTaskService::class,
         );
     }
 

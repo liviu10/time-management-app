@@ -85,6 +85,14 @@ class Client extends Model
     }
 
     /**
+     * Eloquent relationship between clients and projects.
+     */
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Management\Project');
+    }
+
+    /**
      * Eloquent polymorphic relationship between clients and logs.
      *
      */

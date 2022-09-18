@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Admin\Log;
 
-class Project extends Model
+class ProjectTask extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -16,7 +16,7 @@ class Project extends Model
      * 
      * @var string
      */
-    protected $table = 'projects';
+    protected $table = 'project_tasks';
 
     /**
      * The primary key associated with the table.
@@ -37,7 +37,7 @@ class Project extends Model
      * 
      * @var string
      */
-    protected $foreignKey = 'client_id';
+    protected $foreignKey = 'project_id';
     
     /**
      * The data type of the database table foreign key.
@@ -52,9 +52,10 @@ class Project extends Model
      * @var string
      */
     protected $fillable = [
-        'client_id',
+        'project_id',
         'name',
-        'is_active',
+        'observations',
+        'is_done',
     ];
 
     /**
@@ -75,37 +76,29 @@ class Project extends Model
      * @var string
      */
     protected $attributes = [
-        'is_active' => false,
+        'is_done' => false,
     ];
 
-    public function scopeIsActive ($query) 
+    public function scopeIsDone ($query) 
     {
-        return $query->where('is_active', true);
+        return $query->where('is_done', true);
     }
 
-    public function scopeIsNotActive ($query) 
+    public function scopeIsNotDone ($query) 
     {
-        return $query->where('is_active', false);
+        return $query->where('is_done', false);
     }
 
     /**
-     * Eloquent relationship between projects and clients.
+     * Eloquent relationship between project_tasks and projects.
      */
-    public function client()
+    public function project()
     {
-        return $this->belongsTo('App\Models\Management\Client');
+        return $this->belongsTo('App\Models\Management\project');
     }
 
     /**
-     * Eloquent relationship between projects and project_tasks.
-     */
-    public function project_tasks()
-    {
-        return $this->hasMany('App\Models\Management\ProjectTask');
-    }
-
-    /**
-     * Eloquent polymorphic relationship between projects and logs.
+     * Eloquent polymorphic relationship between project_tasks and logs.
      *
      */
     public function log()
