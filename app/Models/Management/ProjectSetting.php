@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Admin\Log;
 
-class ProjectTask extends Model
+class ProjectSetting extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -16,7 +16,7 @@ class ProjectTask extends Model
      * 
      * @var string
      */
-    protected $table = 'project_tasks';
+    protected $table = 'project_settings';
 
     /**
      * The primary key associated with the table.
@@ -53,9 +53,10 @@ class ProjectTask extends Model
      */
     protected $fillable = [
         'project_id',
-        'name',
-        'observations',
-        'is_done',
+        'billable_rate',
+        'amount',
+        'budget',
+        'no_of_hours',
     ];
 
     /**
@@ -71,26 +72,7 @@ class ProjectTask extends Model
     ];
 
     /**
-     * The attributes that are mass assignable.
-     * 
-     * @var string
-     */
-    protected $attributes = [
-        'is_done' => false,
-    ];
-
-    public function scopeIsDone ($query) 
-    {
-        return $query->where('is_done', true);
-    }
-
-    public function scopeIsNotDone ($query) 
-    {
-        return $query->where('is_done', false);
-    }
-
-    /**
-     * Eloquent relationship between project_tasks and projects.
+     * Eloquent relationship between project_settings and projects.
      */
     public function project()
     {
@@ -98,7 +80,7 @@ class ProjectTask extends Model
     }
 
     /**
-     * Eloquent polymorphic relationship between project_tasks and logs.
+     * Eloquent polymorphic relationship between project_settings and logs.
      *
      */
     public function log()

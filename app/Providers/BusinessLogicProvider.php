@@ -23,6 +23,8 @@ use App\BusinessLogic\Interfaces\Admin\Management\ProjectTaskInterface;
 use App\BusinessLogic\Services\Admin\Management\ProjectTaskService;
 use App\BusinessLogic\Interfaces\Admin\Management\ProjectStatusInterface;
 use App\BusinessLogic\Services\Admin\Management\ProjectStatusService;
+use App\BusinessLogic\Interfaces\Admin\Management\ProjectSettingInterface;
+use App\BusinessLogic\Services\Admin\Management\ProjectSettingService;
 
 class BusinessLogicProvider extends ServiceProvider
 {
@@ -64,6 +66,10 @@ class BusinessLogicProvider extends ServiceProvider
         $this->app->bind(
             ProjectStatusInterface::class,
             ProjectStatusService::class,
+        );
+        $this->app->bind(
+            ProjectSettingInterface::class,
+            ProjectSettingService::class,
         );
     }
 

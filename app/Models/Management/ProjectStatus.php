@@ -75,11 +75,11 @@ class ProjectStatus extends Model
      */
     public function project()
     {
-        return $this->belongsTo('App\Models\Management\project');
+        return $this->belongsTo('App\Models\Management\Project');
     }
 
     /**
-     * Eloquent polymorphic relationship between project_tasks and logs.
+     * Eloquent polymorphic relationship between project_settings and logs.
      *
      */
     public function log()
