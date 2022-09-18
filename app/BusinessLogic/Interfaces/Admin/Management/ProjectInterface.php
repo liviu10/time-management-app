@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProjectValidateRequest;
 
 /**
- * ProjectInterface is a contract for what methods will be used in the ClientService class.
+ * ProjectInterface is a contract for what methods will be used in the ProjectService class.
  * This consists of the following CRUD operations methods:
  * - handleIndex();
  * - handleStore();

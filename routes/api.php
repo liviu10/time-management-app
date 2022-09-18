@@ -43,10 +43,6 @@ use Illuminate\Support\Facades\Route;
     // Import the Management system
     use App\Http\Controllers\Admin\Management\ClientController;
     use App\Http\Controllers\Admin\Management\ProjectController;
-    use App\Http\Controllers\Admin\Management\ProjectTaskController;
-    use App\Http\Controllers\Admin\Management\ProjectStatusController;
-    use App\Http\Controllers\Admin\Management\ProjectSettingController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -76,12 +72,7 @@ Route::group(['middleware' => 'auth:api', 'prefix' => '/admin'], function () {
     // Application management API routes settings
     Route::group([ 'prefix' => '/management' ], function () {
         Route::apiResource('/clients', ClientController::class);
-        Route::group([ 'prefix' => '/project' ], function () {
-            Route::apiResource('/', ProjectController::class);
-            Route::apiResource('/tasks', ProjectTaskController::class);
-            Route::apiResource('/statuses', ProjectStatusController::class);
-            Route::apiResource('/settings', ProjectSettingController::class);
-        });
+        Route::apiResource('/projects', ProjectController::class);
     });
 });
 
