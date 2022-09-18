@@ -40,7 +40,8 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Admin\Settings\UserListController;
     use App\Http\Controllers\Admin\Settings\UserRoleTypeController;
 
-    // Import the Application system
+    // Import the Management system
+    use App\Http\Controllers\Admin\Management\ClientController;
 
 
 /*
@@ -66,6 +67,11 @@ Route::group(['middleware' => 'auth:api', 'prefix' => '/admin'], function () {
             Route::apiResource('/list', UserListController::class)
                 ->only(['index', 'store', 'show', 'update']);
         });
+    });
+
+    // Application management API routes settings
+    Route::group([ 'prefix' => '/management' ], function () {
+        Route::apiResource('/clients', ClientController::class);
     });
 });
 

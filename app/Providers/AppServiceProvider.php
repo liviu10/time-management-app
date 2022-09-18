@@ -8,6 +8,9 @@ use App\BusinessLogic\Interfaces\Admin\Settings\LogInterface;
 use App\BusinessLogic\Interfaces\Admin\Settings\UserListInterface;
 use App\BusinessLogic\Interfaces\Admin\Settings\UserRoleTypeInterface;
 
+// Import application's management system settings interface classes
+use App\BusinessLogic\Interfaces\Admin\Management\ClientInterface;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
@@ -51,6 +54,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             UserRoleTypeInterface::class,
             UserRoleTypeService::class,
+        );
+        $this->app->bind(
+            ClientInterface::class,
+            ClientService::class,
         );
     }
 }
