@@ -44,6 +44,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\Admin\Management\ClientController;
     use App\Http\Controllers\Admin\Management\ProjectController;
     use App\Http\Controllers\Admin\Management\ProjectTaskController;
+    use App\Http\Controllers\Admin\Management\ProjectStatusController;
 
 
 /*
@@ -74,8 +75,11 @@ Route::group(['middleware' => 'auth:api', 'prefix' => '/admin'], function () {
     // Application management API routes settings
     Route::group([ 'prefix' => '/management' ], function () {
         Route::apiResource('/clients', ClientController::class);
-        Route::apiResource('/projects', ProjectController::class);
-        Route::apiResource('/project-tasks', ProjectTaskController::class);
+        Route::group([ 'prefix' => '/project' ], function () {
+            Route::apiResource('/', ProjectController::class);
+            Route::apiResource('/tasks', ProjectTaskController::class);
+            Route::apiResource('/statuses', ProjectStatusController::class);
+        });
     });
 });
 

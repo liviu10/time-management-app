@@ -12,6 +12,7 @@ use App\BusinessLogic\Interfaces\Admin\Settings\UserRoleTypeInterface;
 use App\BusinessLogic\Interfaces\Admin\Management\ClientInterface;
 use App\BusinessLogic\Interfaces\Admin\Management\ProjectInterface;
 use App\BusinessLogic\Interfaces\Admin\Management\ProjectTaskInterface;
+use App\BusinessLogic\Interfaces\Admin\Management\ProjectStatusInterface;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -68,6 +69,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ProjectTaskInterface::class,
             ProjectTaskService::class,
+        );
+        $this->app->bind(
+            ProjectStatusInterface::class,
+            ProjectStatusService::class,
         );
     }
 }
